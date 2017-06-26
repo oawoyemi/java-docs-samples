@@ -64,30 +64,6 @@ public class PublishHelper implements Runnable {
   public void publish() throws Exception {
     TopicName topicName =
         TopicName.create(projectId, topicId);
-    final SettableApiFuture<PubsubMessage> received = SettableApiFuture.create();
-    Subscriber subscriber =
-        Subscriber.defaultBuilder(
-            SubscriptionName.create(projectId, "ja-test-sub-005"),
-            new MessageReceiver() {
-              @Override
-              public void receiveMessage(
-                  final PubsubMessage message, final AckReplyConsumer consumer) {
-                if (received.set(message)) {
-                  consumer.ack();
-                } else {
-                  consumer.nack();
-                }
-              }
-            })
-            .build();
-    subscriber.addListener(
-        new Subscriber.Listener() {
-          public void failed(Subscriber.State from, Throwable failure) {
-            received.setException(failure);
-          }
-        },
-        MoreExecutors.directExecutor());
-    subscriber.startAsync();
     Publisher publisher = Publisher.defaultBuilder(topicName).build();
     PubsubMessage pubsubMessage =
         PubsubMessage.newBuilder().setData(ByteString.copyFromUtf8(message)).build();

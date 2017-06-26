@@ -66,6 +66,7 @@
     <module>requests</module>
     <module>search</module>
     <module>sendgrid</module>
+    <module>spanner</module>
 
     <module>remote-client</module>
     <module>remote-server</module>

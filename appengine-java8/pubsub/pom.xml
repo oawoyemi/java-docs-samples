@@ -25,15 +25,15 @@
   <properties>
     <failOnMissingWebXml>false</failOnMissingWebXml>
   </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.auth</groupId>
-        <artifactId>google-auth-library-credentials</artifactId>
-        <version>0.7.0</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  <!--<dependencyManagement>-->
+    <!--<dependencies>-->
+      <!--<dependency>-->
+        <!--<groupId>com.google.auth</groupId>-->
+        <!--<artifactId>google-auth-library-credentials</artifactId>-->
+        <!--<version>0.7.0</version>-->
+      <!--</dependency>-->
+    <!--</dependencies>-->
+  <!--</dependencyManagement>-->
 
   <dependencies>
     <dependency>
