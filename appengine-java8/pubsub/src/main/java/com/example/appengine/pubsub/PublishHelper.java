@@ -15,18 +15,12 @@
  */
 package com.example.appengine.pubsub;
 
-import com.google.api.core.SettableApiFuture;
 import com.google.cloud.ServiceOptions;
-import com.google.cloud.pubsub.spi.v1.AckReplyConsumer;
-import com.google.cloud.pubsub.spi.v1.MessageReceiver;
-import com.google.cloud.pubsub.spi.v1.Publisher;
-import com.google.cloud.pubsub.spi.v1.Subscriber;
-import com.google.common.util.concurrent.MoreExecutors;
+import com.google.cloud.pubsub.v1.Publisher;
 import com.google.protobuf.ByteString;
-
 import com.google.pubsub.v1.PubsubMessage;
-import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.TopicName;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
@@ -61,9 +55,8 @@ public class PublishHelper implements Runnable {
     }
   }
 
-  public void publish() throws Exception {
-    TopicName topicName =
-        TopicName.create(projectId, topicId);
+  void publish() throws Exception {
+    TopicName topicName = TopicName.create(projectId, topicId);
     Publisher publisher = Publisher.defaultBuilder(topicName).build();
     PubsubMessage pubsubMessage =
         PubsubMessage.newBuilder().setData(ByteString.copyFromUtf8(message)).build();

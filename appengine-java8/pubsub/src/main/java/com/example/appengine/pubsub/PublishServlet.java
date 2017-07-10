@@ -15,19 +15,20 @@
  */
 package com.example.appengine.pubsub;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.http.HttpStatus;
 
-import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 @WebServlet(value = "/publish")
 public class PublishServlet extends HttpServlet {
@@ -45,8 +46,8 @@ public class PublishServlet extends HttpServlet {
         String topicId = System.getenv("PUBSUB_TOPIC");
         String payload = req.getParameter("payload");
         publishHelper = new PublishHelper(topicId, payload);
-        publishHelper.publish();
-        //executor.execute(publishHelper);
+     //   publishHelper.publish();
+        executor.execute(publishHelper);
       } catch (Exception e) {
         resp.sendError(HttpStatus.SC_INTERNAL_SERVER_ERROR, e.getMessage());
       }
@@ -64,7 +65,6 @@ public class PublishServlet extends HttpServlet {
     }
     out.close();
   }
-
 
   @Override
   public void destroy() {
