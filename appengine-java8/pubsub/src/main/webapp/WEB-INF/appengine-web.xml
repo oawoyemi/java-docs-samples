@@ -9,7 +9,6 @@
 </manual-scaling>
 <url-stream-handler>native</url-stream-handler>
 <env-variables>
-  <env-var name="PUBSUB_VERIFICATION_TOKEN" value="my-smart-token" />
-  <env-var name="PUBSUB_TOPIC" value="ja-test-topic" />
+  <env-var name="PUBSUB_TOPIC" value="my-topic" />
 </env-variables>
 </appengine-web-app>

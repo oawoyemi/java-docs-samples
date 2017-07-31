@@ -27,8 +27,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.http.HttpStatus;
-
 
 @WebServlet(value = "/publish")
 public class PublishServlet extends HttpServlet {
@@ -46,10 +44,11 @@ public class PublishServlet extends HttpServlet {
         String topicId = System.getenv("PUBSUB_TOPIC");
         String payload = req.getParameter("payload");
         publishHelper = new PublishHelper(topicId, payload);
-     //   publishHelper.publish();
+        // publishHelper.publish() hangs unless submitted via an executor
+        // https://github.com/GoogleCloudPlatform/google-cloud-java/issues/2150
         executor.execute(publishHelper);
       } catch (Exception e) {
-        resp.sendError(HttpStatus.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
       }
     }
   }
