@@ -82,8 +82,7 @@ export MAVEN_OPTS='-Xmx800m -Xms400m'
 mvn -B --fail-at-end -q clean verify -e \
     -DskipTests=$SKIP_TESTS \
     -Dbigtable.projectID="${GOOGLE_CLOUD_PROJECT}" \
-    -Dbigtable.instanceID=instance | \
-  grep -E -v "(^\[INFO\] Download|^\[INFO\].*skipping)"
+    -Dbigtable.instanceID=instance
 
 [ -z "$common_dir" ] || popd
 
