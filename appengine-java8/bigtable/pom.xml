@@ -37,8 +37,8 @@ limitations under the License.
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
 
-    <bigtable.version>0.9.7.1</bigtable.version>
-    <hbase.version>2.0.0-alpha2</hbase.version>
+    <bigtable.version>1.0.0-pre3</bigtable.version>
+    <hbase.version>1.2.4</hbase.version> <!-- 1.2.4 -->
     <bigtable.projectID>YOUR_PROJECT_ID</bigtable.projectID>
     <bigtable.instanceID>YOUR_INSTANCE_ID</bigtable.instanceID>
 
@@ -66,7 +66,7 @@ limitations under the License.
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-tcnative-boringssl-static</artifactId>
-      <version>2.0.6.Final</version>
+      <version>1.1.33.Fork26</version> <!-- 1.1.33.Fork26 -->
     </dependency>
 
     <!-- Compile/runtime dependencies -->
@@ -88,7 +88,7 @@ limitations under the License.
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
-      <version>0.35</version>
+      <version>0.30</version> <!-- Must upgrade Guava when this changes (inside bigtable-hbase) -->
       <scope>test</scope>
     </dependency>
 
